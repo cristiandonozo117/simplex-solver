@@ -5,9 +5,6 @@ Test manual para verificar que la API funciona sin problemas de importaciones re
 import sys
 import os
 
-# Añadir el directorio actual al path para resolver importaciones
-#sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 # Agregar el path a la carpeta backend/app
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app")))
 
