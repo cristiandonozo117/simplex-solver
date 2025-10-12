@@ -1,0 +1,11 @@
+# Configuración de test para pytest
+
+[project]
+name = "simplex-api"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+pythonpath = ["backend/app", "app"]
