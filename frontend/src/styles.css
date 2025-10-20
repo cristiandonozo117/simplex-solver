@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+body { 
+  font-family: 'Lexend', system-ui, Arial, sans-serif; 
+  margin: 0; 
+  padding: 0; 
+  background: #f8f9fa; 
+  color: #181818; 
+}
+.container { max-width: 980px; margin: 0 auto; padding: 24px; }
+h1 { 
+  margin: 0 0 16px; 
+  font-family: 'Lexend', sans-serif;
+  color: #181818;
+}
+section { 
+  background: #ffffff; 
+  border: 1px solid #4e6e5d; 
+  border-radius: 8px; 
+  padding: 16px; 
+  margin-bottom: 16px; 
+  font-family: 'Lexend', sans-serif;
+}
+input, select, button { 
+  padding: 8px; 
+  margin: 4px; 
+  font-family: 'Lexend', sans-serif;
+  border: 1px solid #4e6e5d;
+  border-radius: 4px;
+}
+button {
+  background: #9bb560;
+  color: #181818;
+  border: 1px solid #4e6e5d;
+  cursor: pointer;
+}
+button:hover {
+  background: #8aa550;
+}
+.table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+.table th, .table td { 
+  border: 1px solid #4e6e5d; 
+  padding: 6px; 
+  text-align: right; 
+  font-family: 'Lexend', sans-serif;
+}
+.table th { background: #f8f9fa; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.badge { 
+  display: inline-block; 
+  background: #9bb560; 
+  color: #181818;
+  padding: 2px 8px; 
+  border-radius: 999px; 
+  font-size: 12px; 
+  font-family: 'Lexend', sans-serif;
+}
+
+/* PDF print helpers: avoid page breaks inside these cards */
+.pdf-no-break {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
+  -webkit-region-break-inside: avoid !important;
+}
+
+/* Ensure tables try to stay together */
+table.pdf-no-break, .table.pdf-no-break {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+@media print {
+  /* Reduce shadows and interactions for print */
+  * { box-shadow: none !important; }
+  /* Avoid cutting small elements - increase the default avoid sensitivity */
+  .pdf-no-break { page-break-inside: avoid; }
+}
+
+/* Force an element to start on a fresh page when generating PDF */
+.pdf-page-break-before {
+  page-break-before: always !important;
+  break-before: page !important;
+  -webkit-region-break-before: always !important;
+  /* add some top margin to avoid clipping at the page edge */
+  margin-top: 10mm !important;
+}
+
+/* Force break before a major section like the iterations table */
+/* (removed) .pdf-break-before-section to restore previous behavior */
+
+/* Temporary padding class for PDF export to avoid clipping variable content at top */
+.pdf-padding-top {
+  padding-top: 12mm !important;
+}
