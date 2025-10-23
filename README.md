@@ -49,6 +49,14 @@ uvicorn app.app:app --reload --host 0.0.0.0 --port 8000
 
 - Docs: `http://localhost:8000/docs`
 
+## Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+- App: `http://localhost:5173`
+
 ## Tests
 
 ```bash

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: simplex_backend
+    ports:
+      - "8000:8000"
+    networks:
+      - simplex_net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: simplex_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - simplex_net
+
+networks:
+  simplex_net:
+    driver: bridge
