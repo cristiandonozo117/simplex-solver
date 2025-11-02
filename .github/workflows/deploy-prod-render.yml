@@ -1,8 +1,8 @@
 name: CI · Build · CodeQL · GHCR · Render · Discord
 
 on:
-  # push:
-  #   branches: [ "main", "master" ]
+  push:
+    branches: "ci-cd"
   workflow_dispatch:
 
 env:
@@ -118,6 +118,7 @@ jobs:
     needs: build-and-push
     env:
       RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -126,6 +127,7 @@ jobs:
         run: |
           cat > backend.json <<EOF
           {
+            "ownerId": "$RENDER_OWNER_ID",
             "serviceDetails": {
               "name": "${{ env.BACKEND_SERVICE }}",
               "type": "web_service",
@@ -149,6 +151,7 @@ jobs:
         run: |
           cat > frontend.json <<EOF
           {
+            "ownerId": "$RENDER_OWNER_ID",
             "serviceDetails": {
               "name": "${{ env.FRONTEND_SERVICE }}",
               "type": "web_service",
@@ -187,11 +190,17 @@ jobs:
 
       - name: Trigger Backend Deploy
         run: |
+          cat > body.json <<EOF
+          {
+            "clearCache": false
+          }
+          EOF
+
           BACK_ID=$(curl -s -H "Authorization: Bearer $RENDER_API_KEY" https://api.render.com/v1/services | jq -r '.[] | select(.service.name=="simplex-backend") | .service.id')
           curl -s -X POST "https://api.render.com/v1/services/${BACK_ID}/deploys" \
             -H "Authorization: Bearer $RENDER_API_KEY" \
             -H "Content-Type: application/json" \
-            -d '{"clearCache":false}' | jq -C .
+            --data-binary @body.json | jq -C .
 
       - name: Trigger Frontend Deploy
         run: |
@@ -199,5 +208,5 @@ jobs:
           curl -s -X POST "https://api.render.com/v1/services/${FRONT_ID}/deploys" \
             -H "Authorization: Bearer $RENDER_API_KEY" \
             -H "Content-Type: application/json" \
-            -d '{"clearCache":false}' | jq -C .
+            --data-binary @body.json | jq -C .
 
