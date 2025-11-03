@@ -95,7 +95,7 @@ jobs:
       - name: Prepare Nginx Config (Replace Backend URL)
         run: |
           cp frontend/nginx.conf frontend/nginx_render.conf
-          sed -i 's|proxy_pass http://backend:8000/;|proxy_pass https://simplex-solver-backend.onrender.com/;|' frontend/nginx_render.conf
+          sed -i 's|proxy_pass http://backend:8000/;|proxy_pass http://simplex-solver-backend.onrender.com/;|' frontend/nginx_render.conf
           cat frontend/nginx_render.conf
           echo "✅ Updated nginx.conf for Render deployment"
 
