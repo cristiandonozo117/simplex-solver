@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: '/api/', // vite dev server proxy will route /simplex
+  baseURL: '/api', // vite dev server proxy will route /simplex
+  // baseURL: '', // vite dev server proxy will route /simplex
 })
 
 export async function solveSimplex(payload) {
