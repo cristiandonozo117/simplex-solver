@@ -1,9 +1,6 @@
-name: CodeQl · Test Backend · Build and Push 
+name: CodeQl · Test Backend · Build and Push
 
 on:
-  push:
-    # branches: "ci-cd"
-    branches: "main"
   workflow_dispatch:
 
 env:
