@@ -123,11 +123,6 @@ export function FeasibleRegionChart({ constraints, solution, objective }) {
     }
   })
 
-  // Debug: log the data
-  console.log('Optimal points:', optimalPoints)
-  console.log('Solution status:', solutionStatus)
-  console.log('Solution variable_values:', solution?.variable_values)
-  console.log('MaxX, MaxY:', maxX, maxY)
 
   return (
     <section>
