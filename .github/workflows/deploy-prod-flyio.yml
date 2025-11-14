@@ -7,8 +7,8 @@ on:
 env:
   VERSION: v1.1.${{ github.run_number }}
   GHCR_OWNER: ${{ github.repository_owner }}
-  BACKEND_IMAGE: ghcr.io/${{ github.repository_owner }}/simplex-solver-backend
-  FRONTEND_IMAGE: ghcr.io/${{ github.repository_owner }}/simplex-solver-frontend
+  BACKEND_IMAGE: ghcr.io/${{ github.repository_owner }}/simplex-backend
+  FRONTEND_IMAGE: ghcr.io/${{ github.repository_owner }}/simplex-frontend
   BACKEND_SERVICE: simplex-solver-backend
   FRONTEND_SERVICE: simplex-solver-frontend
 
