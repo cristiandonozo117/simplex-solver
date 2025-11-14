@@ -25,6 +25,10 @@ def create_app() -> FastAPI:
     @app.get("/")
     async def root():
         return {"status": "ok", "service": "simplex"}
+    
+    @app.get("/health")
+    async def health():
+        return {"status": "healthy", "service": "simplex-backend"}
 
     return app
 
