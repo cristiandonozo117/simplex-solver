@@ -122,7 +122,7 @@ jobs:
           fly deploy \
             --image "${{ env.BACKEND_IMAGE }}:${{ env.VERSION }}" \
             --config backend/fly.toml \
-            --app simplex-backend \
+            --app simplex-solver-backend \
             --remote-only
 
       - name: Deploy Frontend en Fly.io
@@ -132,7 +132,7 @@ jobs:
           fly deploy \
             --image "${{ env.FRONTEND_IMAGE }}:${{ env.VERSION }}" \
             --config frontend/fly.toml \
-            --app simplex-frontend \
+            --app simplex-solver-frontend \
             --remote-only
 
   # =========================================================
